@@ -1,0 +1,61 @@
+!
+! Double Emittance EXchanger for AWA
+!
+! 1st draft: April 14, 2017, Yine Sun
+!
+!
+! ------------------- upstream and downstream drifts definitions:
+!
+
+DU: drift, L=0.5
+DD: drift, L=0.5
+
+MASK_WATCH:WATCH,FILENAME="MASK_WATCH.W"
+
+!
+! ------------------- eex line drifts definitions:
+!
+B1_B2: drift, L="0.62 20 dsin / 0.29 -"
+B2_B3: drift, L= 0.86
+B3_B4: drift, L="0.62 20 dsin / 0.29 -"
+EEX1_EEX2: drift, L=3.0
+
+! retangular bending magnet with length of 0.29m, bending angle of 20 deg (0.349066 rad)
+
+
+B1:   CSBEND, L="0.29 20 dsin / 20 * 180 / -1 acos *", &
+             angle="20 180 / -1 acos *", &
+             e2="20 180 / -1 acos *",   &
+             hgap=.025
+
+B2:   CSBEND, L="0.29 20 dsin / 20 * 180 / -1 acos *", &
+             angle="-20 180 / -1 acos *", &
+             e1="-20 180 / -1 acos * ",   &
+             hgap=.025
+
+B3:   CSBEND, L="0.29 20 dsin / 20 * 180 / -1 acos *", &
+             angle=" 20 180 / -1 acos *", &
+             e2="  20 180 / -1 acos * ",   &
+             hgap=.025
+
+B4:   CSBEND, L="0.29 20 dsin / 20 * 180 / -1 acos *", &
+             angle="-20 180 / -1 acos *", &
+             e1=" -20  180 / -1 acos * ", &
+             hgap=.025
+
+DL1: line=(B1,B1_B2,B2)
+			 
+DoubleDogLeg: line=(B1, B1_B2, B2, B2_B3, B3, B3_B4, B4)
+
+TCAV: RFDF,L=0.001,FREQUENCY=1.3e+009,PHASE=-95,VOLTAGE=2.56e+006
+!TCAV_MAT: MATR,L=0.0,FILENAME="TCAV.txt"
+
+MASK: SCRIPT,COMMAND="python elegantMask.py %i",rootname="mask",input_extension="in",output_extension="out",KEEP_FILES=1,USE_CSH=0
+
+! single eex
+EEX1: line=(B1, B1_B2, B2, B2_B3, TCAV, B2_B3, B3, B3_B4, B4)
+EEX2: line=(B4, B3_B4, B3, B2_B3, Tcav, B2_B3, B2, B1_B2, B1)
+EEX: line=(MASK,MASK_WATCH,B1, B1_B2, B2, B2_B3, TCAV, B2_B3, B3, B3_B4, B4)
+! double eex
+DEEX: line=(DU,EEX1,EEX1_EEX2,EEX2,DD)
+

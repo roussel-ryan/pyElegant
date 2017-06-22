@@ -1,0 +1,42 @@
+!-----------------------------------------------------
+!Filename: testWrite.lte
+!Date: Wed May 24 22:22:12 2017
+!Beamlines: EEX1,EEX2,EEX,DEEX,
+!Lattice file generated using pyElegant
+!-----------------------------------------------------
+
+! CSBEND
+!-------------
+B1:            CSBEND,L=0.295974078109,ANGLE=0.349065850399,E2=0.349065850399,HGAP=0.025
+B2:            CSBEND,L=0.295974078109,ANGLE=-0.349065850399,E1=-0.349065850399,HGAP=0.025
+B3:            CSBEND,L=0.295974078109,ANGLE=0.349065850399,E2=0.349065850399,HGAP=0.025
+B4:            CSBEND,L=0.295974078109,ANGLE=-0.349065850399,E1=-0.349065850399,HGAP=0.025
+
+! DRIFT
+!-------------
+B1_B2:         DRIFT,L=1.5227587281
+B2_B3:         DRIFT,L=0.86
+B3_B4:         DRIFT,L=1.5227587281
+DD:            DRIFT,L=0.5
+DU:            DRIFT,L=0.5
+EEX1_EEX2:     DRIFT,L=3.0
+
+! RFDF
+!-------------
+TCAV:          RFDF,L=0.001,FREQUENCY=1300000000.0,PHASE=-95.0,VOLTAGE=2560000.0
+
+! SCRIPT
+!-------------
+MASK:          SCRIPT,COMMAND=python elegantMask.py %i,ROOTNAME=mask,INPUT_EXTENSION=in,OUTPUT_EXTENSION=out,KEEP_FILES=1.0,USE_CSH=0.0
+
+! WATCH
+!-------------
+MASK_WATCH:    WATCH,FILENAME=MASK_WATCH.W
+
+! LINE
+!-------------
+EEX1:          LINE=(B1,B1_B2,B2,B2_B3,TCAV,B2_B3,B3,B3_B4,B4,)
+EEX2:          LINE=(B4,B3_B4,B3,B2_B3,TCAV,B2_B3,B2,B1_B2,B1,)
+EEX:           LINE=(MASK,MASK_WATCH,B1,B1_B2,B2,B2_B3,TCAV,B2_B3,B3,&
+B3_B4,B4,)
+DEEX:          LINE=(DU,EEX1,EEX1_EEX2,EEX2,DD,)
