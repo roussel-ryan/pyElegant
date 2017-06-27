@@ -2,20 +2,9 @@
 import sys
 import os
 
-class BeamlineElement:
-	def __init__(self,name,type,parameters):
-		self.name = name
-		self.type = type
-		self.parameters = parameters
-	
-	def writeElement(self):
-		retString = self.name + ': ' + self.type + ','
-		for name,value in self.params.items():
-			retString += name + '=' + str(value) + ','
-		retString = retString[:-1] + '\n'
-		return retString
-		
-class MaskElement(BeamlineElement):
+from . import accelerator
+
+class MaskElement(accelerator.BeamlineElement):
 	def __init__(self,name,mask,keep_files = False):
 		dir_path = os.path.dirname(os.path.abspath(__file__))
 		script_filename = dir_path + '\\masking_script.py'
@@ -31,7 +20,7 @@ class MaskElement(BeamlineElement):
 		'KEEP_FILES':str(kf),\
 		'USE_CSH':'0'}
 	
-		BeamlineElement.__init__(self,name,'SCRIPT',params)
+		accelerator.BeamlineElement.__init__(self,name,'SCRIPT',params)
 		
 		
 if __name__=='__main__':

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import sys
-import sdds
 import numpy as np
 import logging
 
+import sdds
 from pyElegant.beamline.mask import eex
 from PrintVars import PrintVars
 
