@@ -1,58 +1,72 @@
 # -*- coding: utf-8 -*-
 import sys
+import os
 import numpy as np
 import logging
 
-import sdds
-from pyElegant.beamline.mask import eex
+dir_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append('\\'.join(dir_path.split('\\')[:-2]))
+
+from pyElegant import utils
+from pyElegant.beamline.masks import mask
 from PrintVars import PrintVars
+import sdds
+
 
 #masking script for use in elegant masking element
 
 def main(input_filename,mask_config_filename):
+	logger = logging.getLogger('masking')
+	logger.setLevel(logging.DEBUG)
+	fh = logging.FileHandler('mask.log')
+	fh.setLevel(logging.DEBUG)
+	logger.addHandler(fh)
 	
 	#import particle data in from file
-	data_file = sdds.SDDS(0)
+	input_params,input_param_def,input_columns,input_col_def = utils.read_SDDS_file(input_filename,include_definitions=True)
 	output_file = sdds.SDDS(1)
-	data_file.load(input_filename)
-	
 	
 	PrintVars(locals())
 	
 	#apply masking
-	logging.info('Applying masking')
-	data = np.asarray([ele[0] for ele in data_file.columnData]).T
-	result = eex.apply_mask(data,mask_config_filename).T
+	data = np.asarray([item[0] for name,item in input_columns.items()]).T
+	logger.info('Applying masking with {} particles'.format(len(data)))
+	
+	#create mask
+	mask_obj = mask.Mask(mask_config_filename)
+	result = mask_obj.apply_mask(data).T
+	
+	logger.info('Done applying mask, {} particles transmitted'.format(len(result.T)))
 	
 	#add an extra layer of brackets to result for pages
 	paged_result = [[col.tolist()] for col in result]
 	
 	#write resulting bunch to new file with same name but .out ext
-	logging.info('Setting up new file')
-	for ele in data_file.description:
-		output_file.description.append(ele)
+	logger.info('Setting up new file')
+	#for ele in data_file.description:
+	#	output_file.description.append(ele)
+	for name,item in input_params.items():
+		output_file.parameterName.append(name)
+		output_file.parameterDefinition.append(input_param_def[name])
+		output_file.parameterData.append(item)
+
+	for name,item in zip(input_columns.keys(),paged_result):
+		output_file.columnName.append(name)
+		output_file.columnDefinition.append(input_col_def[name])
+		output_file.columnData.append(item)
 	
-	output_file.parameterName = data_file.parameterName
-	output_file.parameterDefinition = data_file.parameterDefinition
-	output_file.parameterData = data_file.parameterData
-	
-	output_file.columnName = data_file.columnName
-	output_file.columnDefinition = data_file.columnDefinition
-	output_file.columnData = paged_result
-	
-	logging.info('Writing to file')
 	if '.in' in input_filename:
+		logger.info('Writing to file {}'.format(input_filename.replace('.in','.out')))
 		output_file.save(input_filename.replace('.in','.out'))
 	else:
+		logger.info('Writing to file {}'.format(input_filename.replace('.in','.out')))
 		output_file.save(input_filename.split('.') + '.new')
-	logging.info('Done writing to file')	
-	del data_file
+	logger.info('Done writing to file')	
 	del output_file
 
 	
 	
 if __name__=='__main__':
 	args = sys.argv
-	mask_config_filename = 'default_linear.config'
-	main(args[1],mask_config_filename)
+	main(args[1],args[2])
 	

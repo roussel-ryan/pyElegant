@@ -2,37 +2,18 @@ import numpy as np
 from scipy import special
 from PrintVars import PrintVars
 
-def apply_mask(data,config_filename):
-	"""Data is in the form of [[x,xp,y,yp,t,p,dt,particleID],[...],...]"""
-	
-	x = data.T[0]
-	y = data.T[2]
-	params = {}
-	f = open(config_filename)
-	mask_name = f.readline().strip().split(' ')[1]
-	for line in f:
-		try:
-			params[line.strip().split(' ')[0]] = float(line.strip().split(' ')[1])
-		except ValueError:
-			params[line.strip().split(' ')[0]] = line.strip().split(' ')[1]
-	f.close()
-	masks = {'maskLinear':maskLinear,'maskUniform':maskUniform,'maskWWitness':maskWWitness,'circle':circle}
-	
-	result = []
-	for particle,passes_thru in zip(data,[abs(eleY) <= masks[mask_name](eleX,**params) for eleX,eleY in zip(x,y)]):
-		if passes_thru:
-			result.append(particle)
-	return np.asarray(result)
-		
-def circle(x,r=10):
+#methods = {'maskCircle':maskCircle,'maskLinear':'maskLinear',\
+#	'maskUniform':maskUniform,\
+#	'maskWWitness':maskWWitness}
+
+def maskCircle(x,r=10):
 	if x < -r:
 		return 0
 	elif x >= -r and x < r:
 		return np.sqrt(r**2 - x**2)
 	else:
 		return 0
-	
-		
+			
 def maskWWitness(x,sigx=0,sigy=0,g0=100,g1=3e4,w0=4e-3,d=1e-3,w1=1e-4,h=100):
 	
 	if x < -g0/g1:

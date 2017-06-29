@@ -3,6 +3,8 @@ import logging
 import re
 import time
 
+from collections import OrderedDict
+
 from . import accelerator
 from ..analysis import rpn
 """ Class for reading and writing lattice files"""
@@ -122,7 +124,8 @@ class LatticeFile:
 		for line in lines:
 			for sub in line.get_sub_beamlines():
 				sub_lines.append(sub)
-		lines = sub_lines + lines
+		lines = list(OrderedDict.fromkeys(sub_lines + lines))
+		
 		
 		#header
 		time_string = time.asctime(time.localtime(time.time()))

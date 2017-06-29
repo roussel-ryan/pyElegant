@@ -99,6 +99,7 @@ class Beamline(AcceleratorElement):
 				ret_string.append('&\n\t\t\t')
 			ret_string.append(''.join([ele.name,',']))
 			i += 1
+		ret_string[-1] = ret_string[-1][:-1]
 		ret_string.append(')')
 		return ''.join(ret_string)
 	
