@@ -1,0 +1,15 @@
+SDDSPython Doc
+
+SDDS file objects have the following attributes:
+	self.mode 	 					read/write mode, ascii or binary
+	self.description				user description
+
+	Paramters
+		- self.parameterName 		parameter names
+		- self.parameterDefinition	array per parameter of form [symbol,units,description,formatString,type,fixedValue]
+		- self.parameterData		array of parameter values for each page
+		
+	Column
+		- self.columnName 			column names
+		- self.columnDefinition		array per column of form [symbol,units,description,formatString,type,fixedValue]
+		- self.columnData			array of column arrays for each page

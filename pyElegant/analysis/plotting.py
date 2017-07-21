@@ -4,6 +4,22 @@ import matplotlib.pyplot as plt
 from .. import utils
 from autoScaleTicks import *
 
+def plot_SDDS(x,y,filename,*args,axes=None,**kwargs):
+
+	if axes:
+		ax = axes
+	else:
+		fig,ax = plt.subplots()
+	
+	data_params,data_cols = utils.read_sdds_file(filename)
+	
+	try:
+		ax.plot(data_cols[x],data_cols[y],*args,**kwargs)
+	except KeyError:
+		logging.warning('Key not found in {}'.format(filename))
+	
+	return ax
+
 def plot_phase_space(filename, density=False):
 	"""
 		plotPhaseSpace(filename,density=False)
@@ -11,11 +27,11 @@ def plot_phase_space(filename, density=False):
 			- density = Flag to specify scatter plot vs density plot (which will take longer)
 	"""
 	c = 2.998e8
-	data_params,data_cols = utils.read_SDDS_file(filename)
+	data_params,data_cols = utils.read_sdds_file(filename)
 	col_names = ['x','xp','y','yp','t','p','particleID']
 	data = []
 	for name in col_names:
-		data.append(data_cols[name][0])
+		data.append(data_cols[name])
 	
 	screenData = np.asfarray(data)
 	#PrintVars(locals())
@@ -27,7 +43,7 @@ def plot_phase_space(filename, density=False):
 		density_plot(screenData[4]-np.mean(screenData[4]),screenData[2],ax3,labels=['t','y'],units=['s','m'])
 		density_plot(screenData[0],screenData[1],ax4,labels=['x','xp'],units=['m',''])
 		density_plot(screenData[2],screenData[3],ax5,labels=['y','yp'],units=['m',''])
-		density_plot(screenData[4]-np.mean(screenData[4]),screenData[5],ax6,labels=['t','p0'],units=['s','mc'])
+		density_plot(screenData[4]-np.mean(screenData[4]),screenData[5],ax6,labels=['t','r$\gamma\beta$'],units=['s',''])
 	else:
 		fig,((ax1,ax2,ax3),(ax4,ax5,ax6)) = plt.subplots(2,3)
 		ax1.plot(screenData[0],screenData[2],'.')
@@ -46,7 +62,7 @@ def plot_phase_space(filename, density=False):
 		autoScale2D(ax5,ylabel='yp',xlabel='y',yUnits='',xUnits='m')
 		
 		ax6.plot((screenData[4]-np.mean(screenData[4])),screenData[5],'.')
-		autoScale2D(ax6,ylabel='p0',xlabel='t',yUnits='eV/c',xUnits='s')
+		autoScale2D(ax6,ylabel=r'$\gamma\beta$',xlabel='t',yUnits='',xUnits='s')
 		
 	fig.suptitle('Phase space plot from file ' +filename)
 	
@@ -75,7 +91,7 @@ def get_2D_data(axes):
 		axesData.append([ele.get_xdata(),ele.get_ydata()])
 	return axesData
 
-def histogram_overlay(axes,data=[],axis='x',inc=0.25,label=''):
+def histogram_overlay(axes,data=[],axis='x',inc=0.25,label='',line_number=0):
 	"""
 		add a histogram overlay to axes object,data supplied by axes itself or data supplied by user
 		data supplied by user is prioritized over data supplied by graph
@@ -86,7 +102,7 @@ def histogram_overlay(axes,data=[],axis='x',inc=0.25,label=''):
 		hist_data = data[axis_dict[axis]]
 		xLimits = (hist_data.min(),hist_data.max())
 	else:
-		graph_data = get_2D_data(axes)
+		graph_data = get_2D_data(axes)[line_number]
 		if len(graph_data):
 			hist_data = graph_data[axis_dict[axis]]
 			xLimits = axes.get_xlim()

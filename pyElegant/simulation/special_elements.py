@@ -37,7 +37,7 @@ class MaskElement(accelerator.BeamlineElement):
 		"""
 
 		mask_obj = mask.Mask(self.mask_file)
-		logging.debug(mask_obj.params)
+		#logging.debug(mask_obj.params)
 		x_scale = mask_obj.params['sigx']
 		x_mult = 5
 		
