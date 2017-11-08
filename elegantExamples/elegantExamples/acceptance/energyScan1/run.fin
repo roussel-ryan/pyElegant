@@ -1,0 +1,167 @@
+SDDS1
+!# big-endian
+&description text="final properties--input: run.ele  lattice: lattice.lte", contents="final properties", &end
+&parameter name=Sx, symbol="$gs$r$bx$n", units=m, description=sqrt(<(x-<x>)^2>), type=double, &end
+&parameter name=Sxp, symbol="$gs$r$bx'$n", description=sqrt(<(x'-<x'>)^2>), type=double, &end
+&parameter name=Sy, symbol="$gs$r$by$n", units=m, description=sqrt(<(y-<y>)^2>), type=double, &end
+&parameter name=Syp, symbol="$gs$r$by'$n", description=sqrt(<(y'-<y'>)^2>), type=double, &end
+&parameter name=Ss, symbol="$gs$r$bs$n", units=m, description=sqrt(<(s-<s>)^2>), type=double, &end
+&parameter name=Sdelta, symbol="$gs$bd$n$r", description=sqrt(<(delta-<delta>)^2>), type=double, &end
+&parameter name=St, symbol="$gs$r$bt$n", units=s, description=sqrt(<(t-<t>)^2>), type=double, &end
+&parameter name=Cx, symbol=<x>, units=m, description="x centroid", type=double, &end
+&parameter name=Cxp, symbol=<x'>, description="x' centroid", type=double, &end
+&parameter name=Cy, symbol=<y>, units=m, description="y centroid", type=double, &end
+&parameter name=Cyp, symbol=<y'>, description="y' centroid", type=double, &end
+&parameter name=Cs, symbol=<s>, units=m, description="mean distance traveled", type=double, &end
+&parameter name=Cdelta, symbol="<$gd$r>", description="delta centroid", type=double, &end
+&parameter name=Ct, symbol=<t>, units=s, description="mean time of flight", type=double, &end
+&parameter name=s12, symbol="$gs$r$b12$n", units=m, description="<x*xp'>", type=double, &end
+&parameter name=s13, symbol="$gs$r$b13$n", units="m$a2$n", description="<x*y>", type=double, &end
+&parameter name=s14, symbol="$gs$r$b14$n", units=m, description="<x*y'>", type=double, &end
+&parameter name=s15, symbol="$gs$r$b15$n", units="m^a2$n", description="<x*s>", type=double, &end
+&parameter name=s16, symbol="$gs$r$b16$n", units=m, description="<x*delta>", type=double, &end
+&parameter name=s23, symbol="$gs$r$b23$n", units=m, description="<x'*y>", type=double, &end
+&parameter name=s24, symbol="$gs$r$b24$n", description="<x'*y'>", type=double, &end
+&parameter name=s25, symbol="$gs$r$b25$n", units=m, description="<x'*s>", type=double, &end
+&parameter name=s26, symbol="$gs$r$b26$n", description="<x'*delta>", type=double, &end
+&parameter name=s34, symbol="$gs$r$b34$n", units=m, description="<y*y'>", type=double, &end
+&parameter name=s35, symbol="$gs$r$b35$n", units="m^a2$n", description="<y*s>", type=double, &end
+&parameter name=s36, symbol="$gs$r$b36$n", units=m, description="<y*delta>", type=double, &end
+&parameter name=s45, symbol="$gs$r$b45$n", units=m, description="<y'*s>", type=double, &end
+&parameter name=s46, symbol="$gs$r$b46$n", description="<s'*delta>", type=double, &end
+&parameter name=s56, symbol="$gs$r$b56$n", units=m, description="<s*delta>", type=double, &end
+&parameter name=Transmission, description=Transmission, type=double, &end
+&parameter name=pCentral, symbol="p$bcen$n", units="m$be$nc", description="Reference beta*gamma", type=double, &end
+&parameter name=pAverage, symbol="p$bave$n", units="m$be$nc", description="Mean beta*gamma", type=double, &end
+&parameter name=KAverage, symbol="K$bave$n", units=MeV, description="Mean kinetic energy", type=double, &end
+&parameter name=Charge, units=C, description="Beam charge", type=double, &end
+&parameter name=ex, symbol="$ge$r$bx$n", units=m, description="geometric horizontal emittance", type=double, &end
+&parameter name=ey, symbol="$ge$r$by$n", units=m, description="geometric vertical emittance", type=double, &end
+&parameter name=ecx, symbol="$ge$r$bx,c$n", units=m, description="geometric horizontal emittance less dispersive contributions", type=double, &end
+&parameter name=ecy, symbol="$ge$r$by,c$n", units=m, description="geometric vertical emittance less dispersive contributions", type=double, &end
+&parameter name=el, symbol="$ge$r$bl$n", units=s, type=double, &end
+&parameter name=enx, symbol="$ge$r$bx,n$n", units=m, description="normalized horizontal emittance", type=double, &end
+&parameter name=eny, symbol="$ge$r$by,n$n", units=m, description="normalized vertical emittance", type=double, &end
+&parameter name=ecnx, symbol="$ge$r$bx,cn$n", units=m, description="normalized horizontal emittance less dispersive contributions", type=double, &end
+&parameter name=ecny, symbol="$ge$r$by,cn$n", units=m, description="normalized vertical emittance less dispersive contributions", type=double, &end
+&parameter name=ma1, units=m, description="maximum absolute value of x", type=double, &end
+&parameter name=ma2, description="maximum absolute value of x'", type=double, &end
+&parameter name=ma3, units=m, description="maximum absolute value of y", type=double, &end
+&parameter name=ma4, description="maximum absolute value of y'", type=double, &end
+&parameter name=Wx, symbol="W$bx$n", units=m, description="68.26% width in x", type=double, &end
+&parameter name=Wy, symbol="W$by$n", units=m, description="68.26% width in y", type=double, &end
+&parameter name=Dt, symbol="$gD$rt", units=s, description="Total time-of-flight span", type=double, &end
+&parameter name=Ddelta, symbol="$gDd$r", description="Total delta span", type=double, &end
+&parameter name=Dt50, symbol="$gD$rt$b50$n", units=s, description="50% time-of-flight span", type=double, &end
+&parameter name=Dt60, symbol="$gD$rt$b60$n", units=s, description="60% time-of-flight span", type=double, &end
+&parameter name=Dt70, symbol="$gD$rt$b70$n", units=s, description="70% time-of-flight span", type=double, &end
+&parameter name=Dt80, symbol="$gD$rt$b80$n", units=s, description="80% time-of-flight span", type=double, &end
+&parameter name=Dt90, symbol="$gD$rt$b90$n", units=s, description="90% time-of-flight span", type=double, &end
+&parameter name=Dt95, symbol="$gD$rt$b95$n", units=s, description="95% time-of-flight span", type=double, &end
+&parameter name=Ddelta50, symbol="$gDd$r$b50$n", description="50% delta span", type=double, &end
+&parameter name=Ddelta60, symbol="$gDd$r$b60$n", description="60% delta span", type=double, &end
+&parameter name=Ddelta70, symbol="$gDd$r$b70$n", description="70% delta span", type=double, &end
+&parameter name=Ddelta80, symbol="$gDd$r$b80$n", description="80% delta span", type=double, &end
+&parameter name=Ddelta90, symbol="$gDd$r$b90$n", description="90% delta span", type=double, &end
+&parameter name=Ddelta95, symbol="$gDd$r$b95$n", description="95% delta span", type=double, &end
+&parameter name=DtPerc10, units=s, description="Time offset to 10% point", type=double, &end
+&parameter name=DtPerc20, units=s, description="Time offset to 20% point", type=double, &end
+&parameter name=DtPerc30, units=s, description="Time offset to 30% point", type=double, &end
+&parameter name=DtPerc40, units=s, description="Time offset to 40% point", type=double, &end
+&parameter name=DtPerc50, units=s, description="Time offset to 50% point", type=double, &end
+&parameter name=DtPerc60, units=s, description="Time offset to 60% point", type=double, &end
+&parameter name=DtPerc70, units=s, description="Time offset to 70% point", type=double, &end
+&parameter name=DtPerc80, units=s, description="Time offset to 80% point", type=double, &end
+&parameter name=DtPerc90, units=s, description="Time offset to 90% point", type=double, &end
+&parameter name=R11, symbol="R$b11$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R12, symbol="R$b12$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R13, symbol="R$b13$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R14, symbol="R$b14$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R15, symbol="R$b15$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R16, symbol="R$b16$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R21, symbol="R$b21$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R22, symbol="R$b22$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R23, symbol="R$b23$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R24, symbol="R$b24$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R25, symbol="R$b25$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R26, symbol="R$b26$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R31, symbol="R$b31$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R32, symbol="R$b32$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R33, symbol="R$b33$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R34, symbol="R$b34$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R35, symbol="R$b35$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R36, symbol="R$b36$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R41, symbol="R$b41$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R42, symbol="R$b42$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R43, symbol="R$b43$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R44, symbol="R$b44$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R45, symbol="R$b45$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R46, symbol="R$b46$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R51, symbol="R$b51$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R52, symbol="R$b52$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R53, symbol="R$b53$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R54, symbol="R$b54$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R55, symbol="R$b55$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R56, symbol="R$b56$n", units=m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R61, symbol="R$b61$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R62, symbol="R$b62$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R63, symbol="R$b63$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R64, symbol="R$b64$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=R65, symbol="R$b65$n", units=1/m, description="Transport matrix element from start of system", type=double, &end
+&parameter name=R66, symbol="R$b66$n", description="Transport matrix element from start of system", type=double, &end
+&parameter name=detR, symbol="det R", description="Determinant of transport matrix from start of system", type=double, &end
+&parameter name=CPU, units=s, type=double, &end
+&parameter name=MEM, units=pages, type=long, &end
+&parameter name=PF, units=pages, type=long, &end
+&parameter name=Step, type=long, &end
+&parameter name=Steps, type=long, &end
+&parameter name=Particles, description="Number of particles", type=long, &end
+&parameter name=MALIN.DP, type=double, &end
+&data mode=binary, &end
+    ?wúb ¯?CN¸æTşø?4>²W\?3‡m@.>Õ­ZÚï        =h­ã	§Ç?+ Á[[ƒy¾óGNW¨a1¾ÇàæôÉ1	>¢ ½b¾@IŒÍeşe¿à      >†àªÃ`e¾Ë»g‡ğI>‚jÁâú×ü>F¦…øI¿=úÔ•ES        ¾O|© Å5}¾	Yî>è½ÄS‡¿        >g:‡ô…}8½ÃS-í        =´ºNt¥®š                ?ÆÈ´9Xb@“Í”¡­Ù@“Í”¡­Û@7Ôt+û        >ƒ{c‡>Ë>uÂD
+±›>ƒ{c‡>Ë>uÂD
+±›        ?"Y×t–?Êyú7]?"Y×t–?Êyú7]?„HÈ:UsÄ?QoÁaÉ*ê?Erc°?AĞ Š9Š?zÔßad?4×»v÷ 0=2®           =jU€  ="İ÷ßÀ  =&øUïÀ  =*†…@  =-À™J@  =0ğhÀ                                                  <ğØp   <ÿXj   =¾ºÕ   =‰	Ê   =\ı]€  =6®O€  ="{ê6   =&Èû­   =,¡"ˆ€  ?ÓyÛ?6 À+}F{b                                ?°à6˜û:?ÓyÛ?5ı                                                ¿ó¦J™„»À·Œ>v™                                ¿±UğÍº¿ó¦J™„Â                                                ?ğ                                                      ?ğ      ?ğ  M¤Ä?À£×
+=p¤  q½             ²¿à          ?u?€è/n?5U€ÕlJu?KôÈh4¾;?%%Ü!'K>Ô=I*ûJî        =Xü/}?6Us¿sZ¾ôU:ÑŠ¨¾ú·&H²¨ä>Ó¶‘qó	@IŒÍW–²¿ÜÌÌÌÌÌÍ>†à©êWÃ‚¾¼ü{üÊÅ>ˆ»Cä‹1>có$È°•;> ü B        ¾JèË=ş> ¾"‹Õ[2¤°½áì3RjÎ        ¾}1í/´›»½è4¤™Ğ        =¤™  ×gW                ?ÉxÔıó¶F@“Í”¡­Ù@ÑJ«Xìj@+éõÈ º        >…G%÷,<>v¦aMÁ¿#>…G%÷,<>v¦aMÁ¿#9ß¶Û¹SÙ?&]z£İ¨?Î¨XÛ‹F?&]z£İ¨?Î¨XÛ‹F?‚uC“>ı=?Cç8û?]I7tX?6Î/µZWë?y1„¨Ê°?PÖÆ'“=084[           =ÊË€  =#!™‡   =%W/À   =(J!şÀ  =,†Ì€  =.¢ˆ€                                                  <ñEµ¸   <û6Ú   =Œ$@   =”„×   ==£•   =#ˆ€  =!IrgÀ  =&„@b@  =*rØµÀ  ?©péx¿^À'Â,ÖŞd\                                ?µ9àÇ®w?©péx¿’                                                ¿ót¸ƒ$À_»'_Ï8                                ¿µè¼~!+¿ót¸ƒ!                                                ?ğ                                                      ?ğ      ?ğ  	÷6'?ÊáG®zá  r0             Ç¿ÜÌÌÌÌÌÍ    ?næŸ>wó¾?W}ÍåHX?XQ†1›?W
+½ËU>Ôdi\Ï        =ü…“ÛGê?3Óa—ks¾ÁGœÔğ
+¶>ì~çÂ=£¾ÊƒTÿ›ë@IŒÍÕ%¿Ù™™™™™š>†à©Îˆ"¾Œå;F¶Ç>©c´İ‚¬>Tœ},“¡>ñ|éÏ        ¾@Ñ´EÄá½ëH7Ã\†Ã½ÀNSˆå[œ        ¾RÖhâSÀÇ½÷“2–bt        ½ªÕİàşŠ                ?ÍOß;dZ@“Í”¡­Ù@’X®Œaã@‚»éëhîõ        >‡¬máÚtÒ>wXUjPˆ>‡¬máÚtÒ>wXUjPˆ9±ü…“ÛGê?+%2=O6³?ÄÄšÖ­Ş?+%2=O6³?ÄÄšÖ­Ş?|uÆkJG?&5Ğ"Í™?g}]lmr? sX·;™?qö‚Ë”Øß?\¾aåÉò³=0¨È           =6yw   =!ÜU@  =$ÊS×@  ='ÕóÀ  =,™!€  =.HS€                                                  <î¼   <ûgKÖ   =RhS   =Ëú6   =ñÀF€  =åúV€  = ÿ˜·   =$ûÅĞ   =)¶_€  ¿ÉÒ	XêXÀ#xûMì                                ?¹94Uöëw¿ÉÒ	Xêm                                                ¿ójşì/ÀéKÁ1Â                                ¿¹“ŒGu…“¿ójşì.ÿ                                                ?ğ                                                      ?ğ      ?ğ  ßÅÀ?Ò\(õÂ  r0             å¿Ù™™™™™š    ?\,Ì;~­µ?&N$Îí?^It"¤÷|?]Œ!ŒÍ•>Ï>]ìmî„        =ùÆ9µÍº?#T¬C^å>ôR”Û7š>Å×ßÉàï‘¾ÂCLÂ?…x@IŒÌ÷1¿Öffffff>†à©¯ØN>Û3n{î>x÷×q?}>MĞSã* >
+EˆréÛæ        ¾/ÎæuÑ>­úè›B=Ğ2åÕáV        >…åÍsùò¹½Ñ«/ô€5        ½ª¢îöà\                ?Íp£×
+=q@“Í”¡­Ù@“àmic@„Kéâ¢Uù        >†ùâLğ„á>wîÆ ¥ì9>†ùâLğ„á>wîÆ ¥ì99«ùÆ9µÍº?,Š‘Îš½?ºµ¬Ô××?,Š‘Îš½?ºµ¬Ô××?mUË^nB?6'¶d1ü?jøUß`Fj?,úXç^¨<?^‚ÂL`?aõ"ngŞZ=+	³³           =	ÀO   =õÁi€  = w¸@  ="&O™@  =$ÛïPÀ  ='ş=„€                                                  <èüJğ   <öl¬   =(ó’   =ä¿   =óƒ   =O‰ô   =X€  = ÈbJ@  =#¶H@  ¿ÜZn¹guÀ[}ûØà                                ?¼ÜÑm$j¿ÜZn¹gs                                                ¿òú¬ó¡ÀnLS–Â                                ¿¼S_£¯É¿òú¬ó                                                ?ğ                                                      ?ğ      ?ğ  Sq?ë333333  r0             æ¿Öffffff    ?E9u\#Æ?3!ğr?`^Ñª#k?$¥ø¿>Ét™¥‰s        =ÊèÆ±X¿·RÜŠğŸ>ûgÂ…¸­ş>É%¢Xà…Ë¾ÁÆ}TW«¹@IŒÌïœ*b¿Ó333333>†à©˜cª0¾w¦1™¼w>sDl‘ <Æ>1»­„#µ¡=É¤İ»nv        >;òÍH2/> ±İ†#W=É=¤¤.5ó        >“¿`Ë¿Ó¥½ì9İÄ¯        ½¸B5Ä	¶u                ?Íp£×
+=q@“Í”¡­Ù@•gvNq,ã@…ÛéÛ®B        >‡ 0¾i†d>x?  e	>‡ 0¾i†d>x?  e	9Ì}¢÷›¯?.ÄûEßc~? 7Ë"öQs?.ÄûEßc~? 7Ë"öQs?Tƒa%n?Br1*ÁDn?kÎßÂ–MF?4–‡ò‹õP?Gš!!ê=~?c,ß›H5=&ÇuF€          =¬c   =ñ   =0ƒ¾   =™‹j   = ô4@  =#Ùu!€                                                  <äú$à   <ò¾š’   <ûÒÊ   =÷Áö   =ˆ­   =æÊ€  =)ÿ€  =M³•€  =8Ğ   ¿åo’>šÀÛxz^¡                                ?½ï…îaÌ‚¿åo’>›                                                ¿ò)<“¹%µÀ”Po†Çd                                ¿¾*ñ®“±¿ò)<“¹%Ã                                                ?ğ                                                      ?ğ      ?ğ  mßT?íp£×
+=q  r0             æ¿Ó333333    ?^gËL Î}?8˜ÊY“ï–?_Ì7ò&i?(Âxüş>ÆÛ7€“Õ        =ÌÁšw¨ˆ¿$	À‰¿o°>ıhhûÏà8>üEaJ$É—>I«;Ã¸"@IŒÌë)ål¿Ğ      >†à©‡:×¾¦Ÿ.Mu3ï>t¿!\Gl ¾ mTÏÑ½ã#qŒs-        ¾6Ğsl„>®Úñw`…=Åc/­G‹        >—8SqÕÎ1½æ!}šú)/        ½¶¶ãRåL³                ?ÎvÈ´9X@“Í”¡­Ù@–îÚ/yBc@‡kéÔ—Ç•        >‡{²Ú`½ã>xH*îfÁ3>‡{²Ú`½ã>xH*îfÁ3        ?0ÔSãÌè?!fÛÒŞ;|?0ÔSãÌè?!fÛÒŞ;|?nŒ}"CÎj?F.Ò?[ı?l5‘BU?7©”P vÔ?`_'¥I?b.Z€©»æ="ßsW@          =YkÄ€  =y–Õ   =ÂX|€  =@   =6ç   = Ø€5À                                                  <â"…¸   <ğ¡ær   <÷ğÓ.   = '+A   =‘×i   =´S   =8[®€  =¢q€  =`Ï÷   ¿ìÆP„ãK¿ş9Ô8w¸Ó                                ?¾ô‹;Ø—¥¿ìÆP„ã7                                                ¿ğúb7Ú›0¿ğ•MáPtƒ                                ¿¿ÄÙÿ@»¿ğúb7Ú›2                                                ?ğ                                                      ?ğ      ?ğ  iq?ğzáG®{  r0             î¿Ğ          ?i"4mÕü?;”ĞîÆ ?\È’O“±q?*¸<äÁ>Äã¸ÜVj        =ô&FP5¿1^/huú?›"¶#œ?X	%N>¹=Ç¹fQ•@IŒÌèÏ×¿É™™™™™˜>†à©y«øô¾µtı×·¾b7•Åğu¾UWo¸*òï½úâ«÷E…S        >E¢&!"6Ş>,¾ÃU“øì=Ğ&FBp‰I        >—>!m€	½ºHÕ¡÷À4        ½¡Wv‡ä¡ç                ?Ï|í‘hr°@“Í”¡­Ù@˜v>Wæ@ˆûéÎã}¶        >‡ÿ­¾œ—i>xvÎ7‹«Ï>‡ÿ­¾œ—i>xvÎ7‹«Ï        ?2Xo«eËÌ?"³€4ãhÁ?2Xo«eËÌ?"³€4ãhÁ?xr¬ˆ›j¼?Hiww@<?kKÄ¸ë³Ë?8[ü œ?l“‡>aÙ?`ƒ­·uT="l_ˆÀ          =ˆ(¬   =zV   =Ğ~³   =õ1€  =¿‘|   =§JA                                                   <ß) ğ   <ì«i0   <õ]§F   <üírP   =Bd¯   =	¿Q¬   =¿#ê€  =™ç|   =‡@€  ¿ñ,ÑÄ&?ñµ^µ¿¸                                ?¿$¥ÚzÕ™¿ñ,ÑÄ%                                                ¿îèÃ~Oƒ??á‘®ìë                                ¿¿>Ú¡ĞÃ¿îèÃ~Oƒ0                                                ?ğ                                                      ?ğ      ?ğ  ÷ñ¬?òzáG®  r0             ö¿É™™™™™˜    ?pìÕì?:ÙXáa¡a?YF9áuÔ?*u”r®·>Á/±¬\%v        <şÇçQÚ»¿8N€Ê»ª?’™	R–«?
+N¥;I%>Ë:ï"„°	@IŒÌä{5¿Ã333332>†à©mƒµâ¾ºÁ¹5wâæ>€ "´¥›¾E¿wó¤Ë ¾VáÄ^        ¾@ef‚B>Sğ@@í=Õ›ß{ä¼ï        >“Õ]î¥ºÑ=É5¿›”~ï        =z<’Fã                ?Ï¾vÈ´9X@“Í”¡­Ù@™ı¡ñ‰mg@Š‹éÉÛ C        >‡ÑJ^ÿ7ÿ>xœRÛ‹ñ>‡ÑJ^ÿ7ÿ>xœRÛ‹ñ9·B-}d?3XIVû%?#ı16ãîU?3XIVû%?#ı16ãîU?}«ÎCc#Ÿ?G®1¿Tä,?jZñª?7ßŸSA›?r[±2cøü?[öû–sIÕ=¨Ö¬           =	˜›P   =ÿJ»   =ƒ]€  =©¿   =73M   =+ı±€                                                  <ÛTÌ    <éQFü   <òú†´   <øôßl   = Dá   =I‘   =&ß   =)Î=   =_ß   ¿ó£ŒÄíè”@øu;eŠ+                                ?¾‘.-ÈHb¿ó£ŒÄíè•                                                ¿ë>ÈF@jq³æ:è                                ¿¾œ±‘¤D¿ë>ÈF                                                ?ğ                                                      ?ğ      ?ğ  x	?ó\(õÂ\  r0             ø¿Ã333332    ?r¶)Ã«w?9Ô×*Èa ?UÕV?):~^ª>>¾ÊsŞ~Wm        <û‘û¬¢Ñ÷¿7A$TÆ>şvJ@ÔS?ÖÕ[¶ò>ÂN“rÒ¾·@IŒÌâÔ§¿¹™™™™™˜>†à©cİºõ¾¾DÙAäÇ>}
+Ğuõ…Y¾TjB¯§ü¾níİ~«¦        ¾;,áreÎ>!Æ=Ê ?=Éûj×#»0        > ¹¬\=¸®Ù‘¥	ä        ½uaX‚V+                ?ĞbMÒñª@“Í”¡­Ù@›…Ò‘‚Ø@ŒéÅa­1        >ˆC¤8Õ>xıÕ®Z4O>ˆC¤8Õ>xıÕ®Z4O9{‘û¬¢Ñ÷?4¦ÆH“ºF?%~×U”ò?4¦ÆH“ºF?%~×U”ò?M,´i¨?FÂƒ;şïî?hjÁ²”“Ç?7)DÒ1?uÜ¦¼*G²?W}LvÍn=Û¹€          =Í/‡   =
+„§   =AÓV   =md¨€  =˜Yæ€  =¹6ÿ                                                   <Ø¡ø   <æòFP   <ñ	R   <ö›B>   <ıG(   =Ã	v   =
+R   = œS   =÷uØ   ¿õÍöÄvi€@ò‰D[¥Ù                                ?½OP&Ò¬f¿õÍöÄvi                                                ¿çøM_Cl@Úp²cö—                                ¿½Kù–-+.¿çøM_Cg                                                ?ğ                                                      ?ğ      ?ğ   }üš?ôzáG®{  r0       	      û¿¹™™™™™˜    ?t¥|ÓıÓ?8;¼»U.?RFê½ig?(Üè]©r>¼;láú>         <ùGwùgK‹¿5Oé‹êà>÷Mc†àUç?
+®¡®Bxs>Î£ÏçLõÙ@IŒÌàMgª¿©™™™™™˜>†à©[ğw¾¿li‰î‹>‡™0ı'XÌ¾\;!İP½üúÅP‚¸‡        ¾Eğt·P >$µô$¦N=Âq{\p¯        >ˆX)Iväè=ÒÖ3%é©        =ÎœI-­d                ?ĞbMÒñ©ü@“Í”¡­Ù@i³™˜V@«éÁ`éœ        >ˆOÙ¨M¾`>y§Q.Ï¶X>ˆOÙ¨M¾`>y§Q.Ï¶X9iGwùgK‹?6Ë€›ø?'I•Û<÷?6Ë€›ø?'I•Û<÷?‚˜ƒ®5]?Eé‹Kãı?esÔVë^?5Ğ¨ğŠıÊ?xw<¾Ó?Sdó<Ú~$=WÜö           =”­   =êR   =/9ª   =è|~€  =¡Z<   =
+€                                                  <Ö]v    <å-Í    <ïA¢   <ôd¨$   <û®Àº   =ä=š   =àÓ¿   =6’   =NSè€  ¿÷ƒ)}$°œ@%YìøP¤                                ?»w7zxh0¿÷ƒ)}$°‘                                                ¿âX-ªzDx@ ¬ÿj                                ¿»g•R±¿âX-ªzDt                                                ?ğ                                                      ?ğ      ?ğ   R?özáG®  r0       
+      ¿©™™™™™˜    ?v,9ó€r?6s†?N %O%8Ó?&+c“‘£">ºzNeø[        <÷µêí¿4›€I¨>ó«iÆøò“?wŠâ•.†>ºw.#p2	@IŒÌßåó        >†à©Uk%Q¾¿hm3µ>„RW¾d^k¾dlO¯^‰S½ö;×»        ¾? ^ôŒÁ>([êüï€=¹ZOÔß2        >€ÑÙG³€=£>x!)â        ½ ¯›Œ‰&                ?ĞÄ›¥ãSø@“Í”¡­Ù@“Í”¡­Ô@;é½ÆŸã        >ˆÌj§¼í{>yßï¬ì»>ˆÌj§¼í{>yßï¬ì»        ?7².Wí¥?(¹s¡æ*e?7².Wí¥?(¹s¡æ*e?„|m§–?C÷¨Æ—Î?b€ö$/?4µ67wÌ?zƒ7rOFœ?OhúÛşÖ=·÷ò€          =F“7   =—   =
+?é   =6K   =ó¹¯   =ü3                                                   <Õ<+   <ãzÌ¤   <íXı¬   <òÍ¦   <ù˜O0   =#oŸ   =FÁ…   =
+ãCÀ   =îè   ¿ø¾[7 ì`@,Wõj,                                 ?¹#8Ğœ›¨¿ø¾[7 ìX                                                ¿Ú¦{K_@ îVEº–È                                ¿¹¾º¬6.¿Ú¦{K_                                                 ?ğ                                                      ?ğ      ?ğ     P?÷…¸Që…  r0                        ?vûŞÊ­?4iM‰¸ÃÎ?J˜…v,?$ßºŸ>.>¸n…ü<™        <õàSê-h¿*ğè,J]İ>å¯6ğZ?Vw™•ÁO>¤¨º¡ìÚ@IŒÌİ½!?©™™™™™ >†à©O’;4¾½'XçW×a>“!ßÖJ5¾bAŒºr½¿ƒ«Òµ        ¾Nm¹Ã¤ù>#?!~$É=‘¡'DÃ6        >tå’Š¯A=ÅY}’/ô«        ½’fk"‚%                ?Ñ$İ/ @“Í”¡­Ù@ ˜ºÔá©@eôİBF        >‰ Cì]¥²>zë´%/¶>‰ Cì]¥²>zë´%/¶9•àSê-h?9‚Ê°ş?*	ÅQ|$?9‚Ê°ş?*	ÅQ|$?„G 32¶?B<¡Æ#ïx?_\X$–€M?3fe¤?¥9?{^üß³¿?Mg$Q“‡ß=x¼€          =ò|I   =˜#   =’äÜ   =1ßN   =©5b   =eŠ]€                                                  <Ó™Ãp   <âìô   <êş÷à   <ñ‹#Ğ   <÷¹   <ÿ»¡„   =İŠı   =×›    =¥¼   ¿ù}T¢@1ŒTÒ4M                                ?¶nü§fÙÖ¿ù}T¨                                                ¿Ï¾gî¿ê°@%Ú~ÊIµ                                ¿¶JŸ•¿Ï¾gî¿êî                                                ?ğ                                                      ?ğ      ?ğ   Q?øzáG®{  r0            
+?©™™™™™     ?w4­S.{?2-jÊŒ­ä?ILõDF”Ã?",pëCç>¶be#Ş¨¨        <ô\Úp–¿13~¿ÒÛ>ér&çê«?
+MRÄŸ¥¯>ÅÈ
+í¤]ª@IŒÌÜt]a?¹™™™™™ >†à©Jb¾º,j„Şô²>‘zoÛe¯1¾mÙgê…ö½×áDºqEY        ¾H1Ö~ƒWl>+&]ƒøIF= %"Ô‚–        >fª>šÔF=Ã!vÃ×        ½’‚61íÛø                ?Ñ7KÆ§ï@“Í”¡­Ù@ ÑJ«Xìi@‘-ôÛÆÊ‡        >‰K¦…‚Ú>zh Îp>‰K¦…‚Ú>zh Îp9¦Œfu¾¨?:–ˆÍÉ??+ÁjR¾¬0?:–ˆÍÉ??+ÁjR¾¬0?„Z.àÜé?@wV3aë?Z³U‚L‹?2„z$ÀN?{¾Ø¢ãÔ«?L±™ƒ[…t=†øÂ€          = kE   =À~   =sd   =
+~H€   =+î   =ëƒá€                                                  <Ò‹¨   <á	Š   <èùS   <ğŠ   <öĞb   <ıj4J   =+û9   =à¡   =Ï¸u   ¿ù¿©ï+7@4ç£õ                                 ?³v°GE´æ¿ù¿©ï+<                                                ¿³:Œ±³^n@*dœG ?¯                                ¿³J%+›¿³:Œ±³_&                                                ?ğ                                                      ?ğ      ?ğ   }ü?ú=p£×
+=  r0            ?¹™™™™™     ?w&Î&1?0^ªfB?J2¬Lâ|Í? L“Ş©>´¢š€ğ“²        <òzş€eY¿4f	"•zÊ>êÎTÌ>2?{Ú²bD¾‘[¼ VZÏ@IŒÌÛCf?Ã333334>†à©EË Û¾·h{Evn>œ&¬Zì¾fòSÉœ½át3$Ì'x        ¾Ryİ‡ÕŸ>"ÔohûXü=£&²w6;„        >Sl“Hfô£=Âúq¼        ½|ùdR€                ?Ñ7KÆ§ï@“Í”¡­Ù@¡”ü›Ü÷'@‘õôÚlzK        >‰n“=jTU>z> ¡`NÓ>‰n“=jTU>z> ¡`NÓ9¢zş€eY?;òLÈ†„?,Ö<xG?;òLÈ†„?,Ö<xG?„aòÈF™?=‘R­†l$?X¹èü”iV?0}ñ\¤0?{$ü:J«?Os¬zï1É=Òk_€          <ş&   =•»¯   =°–	   =¸µd   =VL   =vE                                                    <Ñ'OĞ   <ßLhğ   <çR   <íÄ ¤   <ôoË   <ûµ&   =˜½   =HÍ   =
+İŸ^   ¿ù†oÍ…áÃ@86±ùO~                                ?°V@¼P4¿ù†oÍ…á½                                                ?¹´;šo€¼@/fœNÒ#                                ¿°$Ø	Ô?¹´;šo€©                                                ?ğ                                                      ?ğ      ?ğ  x ?û\(õÂ\  r0            ?Ã333334    ?wpÊ%¼u?,¿Â®sd?M+ó$÷—?×V‡>³ä!Gò—        <ñÏƒøÕÿì¿1½4Jµ>ãº°‚/‘”?e“î¡>¢÷®óÒÏT@IŒÌÚµ×?É™™™™™œ>†à©B4Ü ¾´Ï(s¶£>¦7NĞ§4Q¾Oôé§¯b½àîaRû9        ¾Z[c‚æyÆ>=Ú ğm= 7?V‹â        ¾JNL!Ù=É¸r¬—Âw        ½u*#%›½ü                ?Ñ©ûçl‹D@“Í”¡­Ù@¢X®Œaé@’½ôÙ/	        >‰áìõ]D>zJ¬-ñGn>‰áìõ]D>zJ¬-ñGn9ª·Eõ@ÿá?=­Ÿ‡U ?.%»9i]n?=­Ÿ‡U ?.%»9i]n?„_\|5ÿ’?:½‡Ì\Éæ?^1$Á#ß?.{QPË½?{ï¹£}?Oå¼gÛ=ûTŠ           <ıu*   =d¹   =øøD   =M   ==Òk   =¦³\                                                   <Ï÷²ğ   <İá¨¨   <åçjÈ   <ìÁH   <óº[¼   <ú,[\   = ×s-   =È™Î   =
+M3   ¿ø×ò	IÊ@;oÕŠ$W                                ?ªQF³JA¿ø×ò	IÃ                                                ?ÑŸhŠ%ôÔ@2E˜…âS                                ¿©å‹€9t˜?ÑŸhŠ%ôç                                                ?ğ                                                      ?ğ      ?ğ  ÷ñ²?üÌÌÌÌÌÍ  r0            ?É™™™™™œ    ?w.£YDğ?)EÖn|“º?PERœúê?ó‹N,šd>²½„¡B0“        <ğÇ·û‘+Ê¿ J¹¯Qıà>Î9ÃÈ{?YM³O>Ä~B¹…â@IŒÌÙÜÔ:?Ğ      >†à©>¸¾²ß=Ãºû>¢ë8¡5tg>[?gÔ4=ìQnd*?        ¾T‹¤$úG¾ K»DÍœ´½ë˜&¾Qc        ¾C¡H*VR=ÊèxÜ        =—·µë±                ?ÑÊÀƒn˜@“Í”¡­Ù@£`|å¦@“…ôØ
+÷=        >Šílp?q>zG¶¥Ø>Šílp?q>zG¶¥Ø        ??4?[Á?/cSf¸B??4?[Á?/cSf¸B?„BWRxğ±?8jè‚?b#…ùO?,v·Î©.?{öDtF_?Q—"ä‰=Ä’e           <û*Œ   = 	Ó†   =³
+   = ú   =
+3ç   =Å                                                   <ÍÜú    <Û˜    <ä’§h   <ê¦p    <òU÷®   <÷ÿHà   <ÿ3Ö   =|åŠ   =}íœ   ¿÷·&x7ô@>ÔŠwY6                                ?¤]ªáj¿¿÷·&x7ó                                                ?Ü”R(Fˆ›@4ä`Rtª                                ¿£Ÿ±›?Ü”R(Fˆ                                                ?ğ                                                      ?ğ      ?ğ  ig?ıÂ\(õÃ  r0            ?Ğ          ?väZ¹Å ?&˜°hß?RJçÏº÷?Š\íj$»>±Ê?!ÀŞ„        <ïÛÈİ£Ã¿-*¼4Öj2>ÙK€Î"L¢?„U#± >°W‹§û)á@IŒÌÙ>ù+?Ó333334>†à©;¿Vt¾®éŸ<=®>£”ê)ùü>_î±~Ÿ±½µT9¿‚Ô/        ¾RğÚZ[²¾?hc7Î=…ıL¾¸        ¾K¯é¸ ZÚ=Ì9€á­        =—R˜?³U                ?ÒMÒñ©ûç@“Í”¡­Ù@£àmif@”MôÖı_¸        >Šağ‚4<>z°©nåØ'>Šağ‚4<>z°©nåØ'9³é]Š$&Z?@bã’)úk?0“Èšwó?@bã’)úk?0“Èšwó?„;–ò'dé?5Šƒì ¤‹?dÚü±[ ?*Ì`ë ³¾?z¶³|Nˆ?S•_äÚ4=Ì~,           <ùuù8   <ş:d   =šp2   =hE@   =Áf   =
+Ô}                                                   <ÌibP   <ÚA¨   <ãS9Ä   <éf4    <ñFÚ¸   <öİ>   <ıñH4   =QÅg   =.Ûe   ¿ö-ö·.\c@@Än£=p                                ?œ$Gş{´¿ö-ö·.\e                                                ?ãŒx®Æ@7‰Rä9                                ¿›E:“˜…H?ãŒx®Æ                                                ?ğ                                                      ?ğ      ?ğ  mßU?ÿ
+=p£×
+  r0            ?Ó333334    ?v{hªºa?#2Î½¼?TuöÖnÈ÷?C¥É[¾>°ËÓ³Ï»_        <î*ëaÃ¶¿'ÎÊnÿõ>ÑFm³E?¥gQAÏ>£pëÙ'÷@IŒÌØœÁ´?Öfffffh>†à©96>¾ª&tÎ¿§İ>¨7€$fj>b¼3ød=Ê¯ìœàÔz        ¾TÉ§“„<¾Ô÷›HB6=zWüİ>¬"        ¾J£ü^ï=È1mPšÿ_        =—šá«²                ?ÒŸ¾vÈ´9@“Í”¡­Ù@¤£Ä]í"(@•ôÖÀ{        >ŠxM
+4­À>zÿ((Ó5B>ŠxM
+4­À>zÿ((Ó5B9*ëaÃ¶?A§]V‘?1i¢x'Šw?A§]V‘?1i¢x'Šw?ƒÑûë4·‡?34nl˜Fì?gfÜ¨ŒÊÍ?(Ïü¥	O?y¬ğ]k6?W(û–;X=’6§           <økZ   <ü¦   = èü   =²6ğ   =·g   =	ÛZ                                                   <ËÆ    <Ø~_    <â¢Î¨   <èÔ¯ô   <ñ©^   <öñn   <ü6’   =_í   =n˜ù   ¿ôE8‚ëZ@B-£ô°Ôÿ                                ?‘
+„®;dz¿ôE8‚ëZ                                                ?è~:ˆ¢@@:/ÕÈv“u                                ¿1Ù¥Á‰›?è~:ˆ¢F                                                ?ğ                                                      ?ğ      ?ğ  Sy@ záG®{  r0            #?Öfffffh    ?v·ğ4½+e? ı ¶õzc?VK¿ª (m?P½/!şy>±HÎ¹§Tï        <îóûà,TÊ¿!
+ËV Gf>Ç>ª.‚S?~u>„jÙ>¡.‚QĞç@IŒÌØ)V?Ù™™™™™š>†à©7Ãİ¾§!ùØõş>¨53jÉ~>`×Ê–ÓT=åøû	Ö¾î        ¾R‘1Æ[)½ÿÉ®:ç*½2H²Í—Ÿ        ¾BÓRhÃ=Ô5ütşI        =‰ø½æk0                ?ÓS÷ÎÙ‡@“Í”¡­Ù@¥gvNq,è@•İôÕõ¾        >‹[÷
+s¦>zĞ)"@€>‹[÷
+s¦>zĞ)"@€9»|d&Ê0?BL=jc«<?1ï>ç=Î?BL=jc«<?1ï>ç=Î?„h-»0NÊ?1Kî®˜¨?iÑÇ“*g?&«÷ùU?{³óâ›?Y}„\ø¢=@éÛ€          <ø.dÖ   <ü ï   =`v   =T(¦   =g{{   =
+€¡¼                                                   <Êøz    <Øià   <áætÔ   <çÊ…°   <ğşA
+   <õE„   <ü`Ùl   =Td¿   =°P   ¿òz·ä„@C1âİı‡                                ?|UnLzì¿òz·ä‡                                                ?ít¨òÉˆ@<Ñä>>î                                ¿y"ùé Ö?ít¨òÉŸ                                                ?ğ                                                      ?ğ      ?ğ  ßÅÉ@ õÂ\(ö  r0            .?Ù™™™™™š    ?vw_š\c
+?ÛWè'?XŠQ‡1h? ¹çÕC>°Ëü…–s×<      <ît 1~A¾ÑÌ8èr¥>r!/©“ï?ö8)ñ>½:§˜'L@IŒÌØ=öú?ÜÌÌÌÌÌÍ>†à©5éö¾£[:™£>¨èô¢9Ã:>a9ãÜçÄ=ûÙ´2?°        ¾P`7¬g­½ûÚåÃ•òë½“¾^«…ä8TnXd­¾)Q¬Ä%è?=Ô*=î¸‚Ã …k‘î=“¦t78+ïRÂK9y+\m=?Ó¥ãS÷ÎÙ@“Í”¡­Ù@¦+(>õ7¨@–¥ôÔD'W        >‹Å;ÁÓZ>zvxø]k®>‹Å;ÁÓZ>zvxø]k®9Àë@×?C=‘s>?2U#¥u{?C=‘s>?2U#¥u{?„h½–µÌû?.!tw¸wB?kÜqææ?$Á´[ˆ?zÎ„§½?[ïŒgA= Y·           <÷ƒQô   <ü5H   = ôñä   =Ú’   =fÈ   =
+lh`                                                   <ÊNğ   <×©X   <àù’¬   <èuƒ,   <ğŸTN   <õ(€   <ûslŞ   =xO   =®¿   ¿ï,Ìdö@D¶‰4                                ¿X8üdSd¿ï,Ìd÷                                                ?ğŠùfµm@?i±Æ3Q7                                ?aÿ&^ôµ@?ğŠùfµm
+                                                ?ğ                                                      ?ğ      ?ğ  	÷6*@p£×
+=q  r0            3?ÜÌÌÌÌÌÎ    ?wXìq†?jœ­@ç?YN¯_3’Y?wß;<He>±á†}±õö        <ğ¼r¤MG¿¶ì«*öà>“sYè¾2?X`oP¿ø>ÈvÉÒµÛf@IŒÌØ¯õ“?à      >†à©3İı°¾¡—ÜùÑ©>œtxNxò	>TU0v#™w=äG4Ì1        ¾AoÚí¾½ãß™ÈğÆ‘½pkPnô w        >&Ìê²ö=Ûe–5‹û        =œŒÊ&§Š                ?Ô¼j~ùÛ#@“Í”¡­Ù@¦îÚ/yBk@—môÓz¼	        >k«Š¦î>z	Ë!1>k«Š¦î>z	Ë!1        ?E),MF*?2©ÿ»sâ?E),MF*?2©ÿ»sâ?„^zfFòN?+4 >‘\)?m—š™ó?#
+º‰¬W?{,ôñÛ»?\ï-óƒˆ=<ğ€          <ø‚GÊ   <ş´º&   =¥aÓ   =Ns2   =ÎÆ—   =
+˜ê’                                                   <Ê”Â€   <×øA¸   <àLRd   <èØÀì   <ğbÅ€   <õºø   <ı
+.À   =YeJ   =÷¿Z   ¿ézµëÆ­@EÑC­b’                                ¿-×Óîz¿ézµëÆ±                                                ?òIÏ¾ü‚ü@@ø´¤`İj                                ?‚~+?k3?òIÏ¾ü‚ğ                                                ?ğ                                                      ?ğ      ?ğ  M¤Ô@záG®  r0            D?à      
