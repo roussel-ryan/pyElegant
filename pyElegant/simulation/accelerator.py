@@ -31,7 +31,10 @@ class BeamlineElement(AcceleratorElement):
 	def lattice_file_string(self):
 		retString = [''.join(['{}: '.format(self.name).ljust(15),self.type,','])]
 		for name,value in self.parameters.items():
-			retString.append(''.join([name,'=',str(value),',']))
+			if isinstance(value,str):
+				retString.append(''.join([name,'=','\"',value,'\"',',']))
+			else:
+				retString.append(''.join([name,'=',str(value),',']))
 		#retString.append('\n')
 		return ''.join(retString)[:-1]
 	
@@ -43,9 +46,9 @@ class Beamline(AcceleratorElement):
 		type: LINE element
 		beamline_elements: 
 	"""
-	def __init__(self,name,element_list=[]):
+	def __init__(self,name,beamline_elements=[]):
 		AcceleratorElement.__init__(self,name,'LINE')
-		self.beamline_elements = element_list
+		self.beamline_elements = beamline_elements
 		if self.check_for_sub_beamlines(self.beamline_elements):
 			self.is_zipped = True
 		else:
@@ -57,7 +60,7 @@ class Beamline(AcceleratorElement):
 				return True
 		return False
 	
-	def modify_element(self,old_element_name,new_element,old_element_index=0):
+	def replace_element(self,old_element_name,new_element,old_element_index=0):
 		""" find and replace element with name <old_element_name> with <new_element>"""
 		try:
 			found_indicies = self.get_element_index(old_element_name)
@@ -65,11 +68,20 @@ class Beamline(AcceleratorElement):
 		except IndexError:
 			logging.warning('Beamline element {} not found in beamline {}'.format(old_element_name,self.name))
 	
+	def modify_element(self,element_name,params):
+		""" find and alter the first found element of <element_name>"""
+		try:
+			self.get_element(element_name).parameters.update(params)
+		except IndexError:
+			logging.warning('Beamline element {} not found in beamline {}'.format(element_name,self.name))
+	
+	
 	def get_element(self,element_name):
 		"""Finds and returns the first BeamlineElement with the name element_name"""
 		for ele in self.beamline_elements:
 			if ele.name == element_name:
 				return ele
+		raise IndexError
 				
 	def get_element_index(self,element_name):
 		"""Finds and returns all the indices of the BeamlineElement with the name element_name"""

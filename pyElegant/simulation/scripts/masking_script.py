@@ -15,7 +15,8 @@ import sdds
 
 #masking script for use in elegant masking element
 
-def main(input_filename,mask_config_filename):
+def main(input_filename,python_filename):
+	
 	logger = logging.getLogger('masking')
 	logger.setLevel(logging.DEBUG)
 	fh = logging.FileHandler('mask.log')

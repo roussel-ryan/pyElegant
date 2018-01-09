@@ -81,6 +81,7 @@ class LatticeFile:
 					element_text.append(entry)
 			
 			#add elements to list for searching 
+			logging.debug(element_text)
 			for entry in element_text:
 				element_name = entry.split(':')[0]
 				element_type = entry.split(':')[1].split(',')[0]
@@ -100,7 +101,14 @@ class LatticeFile:
 				beamline_elements = entry.split(':')[1].replace('LINE=(','').replace(')','').split(',')
 				tmpBeamline = []
 				for element in beamline_elements:
-					tmpBeamline.append(elements[element])
+					if '*' in element:
+						n_elements = int(element.split('*')[0])
+						element_obj = element.split('*')[1]
+						for i in range(0,n_elements):
+							tmpBeamline.append(elements[element_obj])
+					else:
+						tmpBeamline.append(elements[element])
+				logging.debug([ele.name for ele in tmpBeamline])
 				elements.update({beamline_name:accelerator.Beamline(beamline_name,tmpBeamline)})
 			
 			return elements

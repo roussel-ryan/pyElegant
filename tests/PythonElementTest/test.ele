@@ -1,0 +1,50 @@
+
+
+&run_setup
+  centroid = "test.cen",
+  concat_order = "3",
+  default_order = "3",
+  lattice = "test_lattice.lte",
+  output = "test.out",
+  p_central_mev = "23.7",
+  print_statistics = "1",
+  use_beamline = "TEST",
+&end
+
+&run_control
+&end
+
+&twiss_output
+  alpha_x = "0",
+  alpha_y = "0",
+  beta_x = "74",
+  beta_y = "74",
+  filename = "twiss_output.filename.sdds",
+  matched = "0",
+  output_at_each_step = "1",
+  statistics = "1",
+&end
+
+&bunched_beam
+  alpha_x = "0",
+  alpha_y = "0",
+  alpha_z = "0",
+  beta_x = "74",
+  beta_y = "74",
+  beta_z = "0",
+  distribution_cutoff[0] = 3, 3, 3,
+  dp_s_coupling = "0",
+  emit_x = "1.3e-05",
+  emit_y = "1.3e-05",
+  emit_z = "0",
+  enforce_rms_values[0] = 1, 1, 1,
+  n_particles_per_bunch = "5000",
+  one_random_bunch = "0",
+  sigma_dp = "0.0001",
+  sigma_s = "0.05",
+  symmetrize = "0",
+&end
+
+&track
+&end
+
