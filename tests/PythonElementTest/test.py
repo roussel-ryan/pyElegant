@@ -1,9 +1,6 @@
-from pyElegant.utils import runTransformation
-
 import numpy as np
+
 def main(data):
-	print('waiting')
+	print('press enter to continue')
 	input()
 	return data
-
-runTransformation(main)

@@ -29,7 +29,7 @@ class PythonElement(accelerator.BeamlineElement):
 
     def __init__(self,name,python_file,keep_files = False):
         parameters = {
-            'COMMAND': 'python3 {} %i'.format(python_file),
+            'COMMAND': 'python -m pyElegant.simulation.scripts.python_script {} %i'.format(python_file),
             'rootname': 'py_element',
             'input_extension': 'in',
             'output_extension': 'out',
