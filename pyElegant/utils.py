@@ -1,14 +1,18 @@
-import subprocess
+from subprocess import Popen, PIPE
 import numpy as np
 import logging
 import sdds
 
 
 def run_elegant(filename):
-	subprocess.run('elegant ' + filename, shell=True)
+	process = Popen('elegant ' + filename)
+	out,err = process.communicate()
+	exit_code = process.wait()
 
 def run_sdds_toolkit(cmd):
-	subprocess.run(cmd, shell=True)
+	process = Popen(cmd)
+	out,err = process.communicate()
+	exit_code = process.wait()
 
 def read_sdds_file(filename,include_definitions=False):
 	""" create and return dicts for the columns and the paramters"""
