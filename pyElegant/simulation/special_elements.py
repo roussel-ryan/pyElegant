@@ -33,7 +33,7 @@ class PythonElement(accelerator.BeamlineElement):
 		dir_path = os.path.dirname(os.path.abspath(__file__))
 		script_filename = dir_path + '\\scripts\\python_script.py'
 
-		params = {'COMMAND':'\"python {} %i {}\"'.format(script_filename,self.python_file),'rootname':'\"mask\"',\
+		params = {'COMMAND':'\"python {} %i {}\"'.format(script_filename,self.python_file),'rootname':'\"py_element\"',\
 		'input_extension':'\"in\"',\
 		'output_extension':'\"out\"',\
 		'KEEP_FILES':str(int(keep_files)),\

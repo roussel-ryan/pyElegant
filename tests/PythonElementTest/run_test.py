@@ -19,9 +19,8 @@ from pyElegant.simulation.scripts import python_script
 def main():
 	file = lattice_file.LatticeFile('test_lattice.lte','w')
 	
-	m = importlib.import_module('test')
 	current_dir = os.path.dirname(os.path.abspath(__file__))
-	python_script.main('test.out',current_dir + '\\test')
+	#python_script.main('test.out',current_dir + '\\test')
 	
 	
 	#create a beamline
@@ -29,9 +28,7 @@ def main():
 	
 	#add the python_element element using "test.py" as the test script 
 	#but first need to add the current directory to path
-	current_dir = os.path.dirname(os.path.abspath(__file__))
-	sys.path.insert(0,current_dir)
-	beamline.beamline_elements.append(special_elements.PythonElement('PYTHON_ELEMENT','.'))
+	beamline.beamline_elements.append(special_elements.PythonElement('PYTHON_ELEMENT',current_dir + '\\test',True))
 	
 	#write lattice file
 	file.write(beamline)

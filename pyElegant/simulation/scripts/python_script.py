@@ -5,13 +5,6 @@ import numpy as np
 import logging
 import importlib
 
-dir_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append('\\'.join(dir_path.split('\\')[:-2]))
-
-from pyElegant import utils
-import sdds
-
-
 #python script for use in elegant PythonElement element
 
 def main(input_filename,python_filename):
@@ -21,22 +14,33 @@ def main(input_filename,python_filename):
 			See simulation.special_elements module for details
 	
 	'''
+	if __name__=='__main__':
+		dir_path = os.path.dirname(os.path.abspath(__file__))
+		sys.path.append('\\'.join(dir_path.split('\\')[:-3]))
+
+		from pyElegant import utils
+		import pyElegant
+	
 	
 	logger = logging.getLogger('python_script')
 	logger.setLevel(logging.DEBUG)
-	fh = logging.FileHandler('python_script.log')
+	fh = logging.FileHandler('python_script.log','w')
 	fh.setLevel(logging.DEBUG)
 	logger.addHandler(fh)
-
+	
+	logger.debug('Args: {},{}'.format(input_filename,python_filename))	
+	
 	#import particle data in from file
 	input_params,input_param_def,input_columns,input_col_def = utils.read_sdds_file(input_filename,include_definitions=True)
 	output_file = sdds.SDDS(1)
 
 	#apply python script
 	data = np.asarray([item for name,item in input_columns.items()]).T
-	logger.info('Applying {} to {} particles'.format(python_filename,len(data)))
-	
-	module = importlib.import_module(python_filename)
+	logger.info('Applying {} to {} particles'.format(python_filename.split('\\')[-1],len(data)))
+
+	sys.path.insert(0,'//'.join(python_filename.split('//')[:-1]))
+	logger.debug(sys.path)
+	module = importlib.import_module(python_filename.split('\\')[-1])
 	result = module.main(data).T
 
 	logger.info('Done applying script, {} particles transmitted'.format(len(result.T)))
@@ -63,7 +67,7 @@ def main(input_filename,python_filename):
 		output_file.save(input_filename.replace('.in','.out'))
 	else:
 		logger.info('Writing to file {}'.format(input_filename.replace('.in','.out')))
-		output_file.save(input_filename.split('.') + '.new')
+		output_file.save(input_filename.split('.')[0] + '.new')
 	logger.info('Done writing to file')
 	del output_file
 
