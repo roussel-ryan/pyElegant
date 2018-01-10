@@ -1,18 +1,15 @@
-from subprocess import Popen, PIPE
+import subprocess
 import numpy as np
 import logging
 import sdds
+import sys
 
 
 def run_elegant(filename):
-	process = Popen('elegant ' + filename)
-	out,err = process.communicate()
-	exit_code = process.wait()
+	subprocess.run('elegant ' + filename, shell=True)
 
 def run_sdds_toolkit(cmd):
-	process = Popen(cmd)
-	out,err = process.communicate()
-	exit_code = process.wait()
+	subprocess.run(cmd, shell=True)
 
 def read_sdds_file(filename,include_definitions=False):
 	""" create and return dicts for the columns and the paramters"""
@@ -83,3 +80,21 @@ def gpt_screen_to_sdds(data=None, gpt_filename=None, sdds_filename = 'gpt_out.sd
 	else:
 		sdds_file.save(gpt_filename.split('.')[0] + '.sdds')
 	return n_data
+
+def runTransformation(main):
+	input_filename = sys.argv[1]
+	input_params,input_param_def,input_columns,input_col_def = read_sdds_file(input_filename,include_definitions=True)
+	output_file = sdds.SDDS(1)
+	data = np.asarray([item for name, item in input_columns.items()]).T
+	result = main(data)
+	paged_result = [[col.tolist()] for col in result]
+	for name,item in input_params.items():
+		output_file.parameterName.append(name)
+		output_file.parameterDefinition.append(input_param_def[name])
+		output_file.parameterData.append([item])
+	for name,item in zip(input_columns.keys(),paged_result):
+		output_file.columnName.append(name)
+		output_file.columnDefinition.append(input_col_def[name])
+		output_file.columnData.append(item)
+	assert input_filename[-len('.in'):] == '.in'
+	output_file.save(input_filename[:-len('.in')] + '.out')
