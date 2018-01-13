@@ -1,0 +1,14 @@
+!-----------------------------------------------------
+!Filename: test_lattice.lte
+!Date: Wed Jan 10 23:22:57 2018
+!Beamlines: TEST,
+!Lattice file generated using pyElegant
+!-----------------------------------------------------
+
+! SCRIPT
+!-------------
+PYTHON_ELEMENT: SCRIPT,COMMAND="python -m pyElegant.simulation.scripts.python_script Z:\pyElegant\tests\PythonElementTest\test.py %i",rootname="py_element",input_extension="in",output_extension="out",KEEP_FILES="1",DRIFT_MATRIX="1",USE_CSH="0"
+
+! LINE
+!-------------
+TEST:          LINE=(PYTHON_ELEMENT)

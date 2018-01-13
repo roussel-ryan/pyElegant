@@ -60,11 +60,15 @@ class Beamline(AcceleratorElement):
 				return True
 		return False
 	
-	def replace_element(self,old_element_name,new_element,old_element_index=0):
+	def replace_element(self,old_element_name,new_element,old_element_index=0,replace_all=False):
 		""" find and replace element with name <old_element_name> with <new_element>"""
 		try:
 			found_indicies = self.get_element_index(old_element_name)
-			self.beamline_elements[found_indicies[old_element_index]] = new_element
+			if replace_all:
+				for ele in found_indicies:
+					self.beamline_elements[ele] = new_element
+			else:
+				self.beamline_elements[found_indicies[old_element_index]] = new_element
 		except IndexError:
 			logging.warning('Beamline element {} not found in beamline {}'.format(old_element_name,self.name))
 	
