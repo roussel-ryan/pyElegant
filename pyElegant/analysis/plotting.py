@@ -86,6 +86,7 @@ def plot_phase_space(filename, density=False, title=None, reduced=False):
 
 			ax6.plot((screenData[4]-np.mean(screenData[4])),screenData[5],'.')
 			autoScale2D(ax6,ylabel=r'$\gamma\beta$',xlabel='t',yUnits='',xUnits='s')
+			
 	if title:
 		ax2.set_title(title)
 	else:
