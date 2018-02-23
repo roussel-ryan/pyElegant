@@ -44,7 +44,6 @@ class ElegantFile:
 		args_list = [x for y in lines for x in y if not x=='']
 		
 		self.commands = []
-
 		curr_command = None
 		while len(args_list):
 			arg = args_list.pop(0)
@@ -55,7 +54,10 @@ class ElegantFile:
 				else:
 					curr_command = Command(arg[1:],{})
 			else:
-				curr_command.args[arg.split('=')[0]] = arg.split('=')[1]
+				try:
+					curr_command.args[arg.split('=')[0]] = arg.split('=')[1]
+				except IndexError:
+					logging.error('Error with arg {}'.format(arg))
 			#try:
 				#logging.debug(curr_command.name)	
 				#logging.debug(curr_command.args)
@@ -107,13 +109,13 @@ class ElegantFile:
 class Optimization:
 	"""Set up and provide write instructions for elegant optimization"""
 	def __init__(self):
-		self.setup_params = dict(mode='"minimize"',method='"simplex"',tolerance=1e-10,n_passes=10,n_evaluations=1000,\
-			n_restarts=3,verbose=0,output_sparsing_factor=10)
+		self.setup_params = dict(mode='"minimize"',method='"simplex"',tolerance=1e-10,\
+			verbose=0,output_sparsing_factor=0)
 		self.terms = []
 		self.optimization_variables = []
 		self.optimization_covariables = []
 	
-	def add_term(self,element_name,beam_attr,value=0.0,arg_string=None):
+	def add_term(self,element_name,beam_attr,value=0.0,arg_string=None,**kwargs):
 		""" add a opt term setting a beam attribute to a val if arg_string isn't given
 			Example: set betax at 2nd IP = 0.0
 			add_term('IP#2','betax',0.0)
@@ -133,13 +135,13 @@ class Optimization:
 			string.append(str(value))
 			string.append('-')
 			string.append('sqr"')
-			self.terms.append({'term':' '.join(string)})
+			self.terms.append({'term':' '.join(string),**kwargs})
 	
 	def add_variable(self,element_name,item,lower_limit=0.0,upper_limit=0.0,step_size=0.05):
 		self.optimization_variables.append({'name':element_name,'item':item,'lower_limit':lower_limit,'upper_limit':upper_limit,'step_size':step_size})
 		
 	def add_covariable(self,element_name,item,equation):
-		self.optimization_covariables.append({'name':name,'item':item,'equation':equation})
+		self.optimization_covariables.append({'name':element_name,'item':item,'equation':equation})
 		
 	def apply_optimization(self,commands):
 		""" Add optimization commands to elegant_commands for writing

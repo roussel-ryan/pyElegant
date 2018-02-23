@@ -144,7 +144,7 @@ class KQuadElement(accelerator.BeamlineElement):
             params[name.upper()] = item
 
         output_file.save(self.filename)
-        accelerator.BeamlineElement.__init__(self,self.name,'KQUAD',params)
+        accelerator.BeamlineElement.__init__(self,self.name,'KQUAD',{**params,**kwargs})
 
 if __name__=='__main__':
     test_element = MaskElement('test',None)

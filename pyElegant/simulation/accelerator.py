@@ -37,6 +37,12 @@ class BeamlineElement(AcceleratorElement):
 				retString.append(''.join([name,'=',str(value),',']))
 		#retString.append('\n')
 		return ''.join(retString)[:-1]
+		
+	def get_length(self):
+		try:
+			return self.parameters['L']
+		except KeyError:
+			return 0.0
 	
 class Beamline(AcceleratorElement):
 	"""Beamline object
@@ -44,15 +50,20 @@ class Beamline(AcceleratorElement):
 	Attributes:
 		name: Name of element
 		type: LINE element
-		beamline_elements: 
+		elements: 
 	"""
-	def __init__(self,name,beamline_elements=[]):
+	def __init__(self,name,elements=[]):
 		AcceleratorElement.__init__(self,name,'LINE')
-		self.beamline_elements = beamline_elements
-		if self.check_for_sub_beamlines(self.beamline_elements):
+		self.elements = elements
+		self.element_coordinates = []
+		if self.check_for_sub_beamlines(self.elements):
 			self.is_zipped = True
+			self._unzipped_elements = self.unzip()
 		else:
 			self.is_zipped = False
+			self._unzipped_elements = self.elements
+			
+		self.calculate_element_coordinates()
 	
 	def check_for_sub_beamlines(self,element_list):
 		for element in element_list:
@@ -66,9 +77,9 @@ class Beamline(AcceleratorElement):
 			found_indicies = self.get_element_index(old_element_name)
 			if replace_all:
 				for ele in found_indicies:
-					self.beamline_elements[ele] = new_element
+					self.elements[ele] = new_element
 			else:
-				self.beamline_elements[found_indicies[old_element_index]] = new_element
+				self.elements[found_indicies[old_element_index]] = new_element
 		except IndexError:
 			logging.warning('Beamline element {} not found in beamline {}'.format(old_element_name,self.name))
 	
@@ -82,7 +93,7 @@ class Beamline(AcceleratorElement):
 	
 	def get_element(self,element_name):
 		"""Finds and returns the first BeamlineElement with the name element_name"""
-		for ele in self.beamline_elements:
+		for ele in self.elements:
 			if ele.name == element_name:
 				return ele
 		raise IndexError
@@ -90,7 +101,7 @@ class Beamline(AcceleratorElement):
 	def get_element_index(self,element_name):
 		"""Finds and returns all the indices of the BeamlineElement with the name element_name"""
 		indices = []
-		for index,ele in zip(range(0,len(self.beamline_elements)),self.beamline_elements):
+		for index,ele in zip(range(0,len(self.elements)),self.elements):
 			if ele.name == element_name:
 				indices.append(index)
 		return indices
@@ -98,19 +109,26 @@ class Beamline(AcceleratorElement):
 	def get_sub_beamlines(self):
 		"""get sub beamline objects in beamline"""
 		sub_beamlines = []
-		for element in self.beamline_elements:
+		for element in self.elements:
 			if isinstance(element,Beamline):
 				sub_beamlines.append(element)
 		return sub_beamlines
 	
+	def calculate_element_coordinates(self):
+		pos = 0
+		self.element_coordinates = [pos]
+		for ele in self._unzipped_elements:
+			pos += ele.get_length() 
+			self.element_coordinates.append(pos)
+	
 	def print_element_names(self):
-		return ''.join([''.join([element.name,',']) for element in self.beamline_elements])
+		return ''.join([''.join([element.name,',']) for element in self.elements])
 	
 	def lattice_file_string(self):
 		ret_string = ['{}: '.format(self.name).ljust(15),self.type,'=(']
 		i=1
 		#logging.debug([x.name for x in self.line])
-		for ele in self.beamline_elements:
+		for ele in self.elements:
 			if i % 10 == 0:
 				ret_string.append('&\n\t\t\t')
 			ret_string.append(''.join([ele.name,',']))
@@ -121,16 +139,16 @@ class Beamline(AcceleratorElement):
 	
 	def unzip(self):
 		""" Search for sub bealines recusrively and expand them into sub componenets"""
-		tmp_beamline = self.beamline_elements
+		tmp_beamline = self.elements
 		while True:
 			is_zipped = self.check_for_sub_beamlines(tmp_beamline)
 			if not is_zipped:
 				break
 			else:
 				tmp_beamline = []
-				for element in self.beamline_elements:
+				for element in self.elements:
 					if isinstance(element,Beamline):
-						for ele in element.beamline_elements:
+						for ele in element.elements:
 							tmp_beamline.append(ele)
 					else:
 						tmp_beamline.append(element)						

@@ -75,11 +75,13 @@ class LatticeFile:
 			#sort the entries into beamlines or elements based on 'LINE' keyword
 			#elements must be defined before beamlines
 			for entry in clean_text:
-				if 'LINE' in entry.split(':')[1]:
-					beamline_text.append(entry)
-				else:
-					element_text.append(entry)
-			
+				try:
+					if 'LINE' in entry.split(':')[1]:
+						beamline_text.append(entry)
+					else:
+						element_text.append(entry)
+				except IndexError:
+					logging.warning('Issues with following entry: {}'.format(entry))
 			#add elements to list for searching 
 			logging.debug(element_text)
 			for entry in element_text:
