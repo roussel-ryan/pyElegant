@@ -139,16 +139,16 @@ def histogram_overlay(axes,data=[],axis='x',inc=0.25,label='',line_number=0):
 
 
 
-	xPrefix, xMult, xTextMult = autoScaleAxis(xLimits)
+	#xPrefix, xMult, xTextMult = autoScaleAxis(xLimits)
 	diff = xLimits[1] - xLimits[0]
 	histLimits = [xLimits[0] - inc*diff,xLimits[1] + inc*diff]
-	hist, bin_edges = np.histogram(hist_data*xMult,range=histLimits,bins='auto')
+	hist, bin_edges = np.histogram(hist_data,range=histLimits,bins='auto')
 	bin_centers = (bin_edges[:-1] + bin_edges[1:])/2.
 	ax2 = axes.twinx()
 	if axis=='x':
 		ax2.plot(bin_centers,hist/np.max(hist),'r-',label='x Axis Histogram')
 	else:
-		ax2.plot(hist/np.max(hist),bin_centers,'r-',label='x Axis Histogram')
+		ax2.plot(hist/np.max(hist),bin_centers,'r-',label='y Axis Histogram')
 
 	if label:
 		ax2.set_ylabel(label + ' (Arb. U.)')
